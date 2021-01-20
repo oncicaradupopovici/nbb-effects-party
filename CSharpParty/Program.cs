@@ -16,6 +16,7 @@ namespace CSharpParty
                 .Then(FizzBuzz)
                 .Then(Console.WriteLine);
 
+        
         //public static readonly Effect<Unit> Main =
         //    Effect.Sequence(
         //        Enumerable.Range(0, 100)
