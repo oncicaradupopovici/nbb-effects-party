@@ -43,12 +43,12 @@ namespace CSharpParty
         //        Console.WriteLine("Good bye!")
         //    });
 
-        public static readonly Effect<Unit> Main =
-            from id in Guid.NewGuid
-            from name in GetNameById(id)
-            let name1 = name.ToUpper()
-            from _ in Console.WriteLine(name1)
-            select Unit.Value;
+        // public static readonly Effect<Unit> Main =
+        //     from id in Guid.NewGuid
+        //     from name in GetNameById(id)
+        //     let name1 = name.ToUpper()
+        //     from _ in Console.WriteLine(name1)
+        //     select Unit.Value;
 
 
         static Effect<Unit> Greet(string name, System.Guid userId)
