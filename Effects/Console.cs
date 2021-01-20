@@ -32,7 +32,7 @@ namespace Effects
     public static class Console
     {
         public static Effect<Unit> WriteLine(string value) =>
-            Effect.Of<ConsoleEffects.WriteLine.SideEffect, Unit>(new (value));
+            Effect.Of<ConsoleEffects.WriteLine.SideEffect, Unit>(new(value));
 
         public static Effect<string> ReadLine = Effect.Of<ConsoleEffects.ReadLine.SideEffect, string>(new());
     }

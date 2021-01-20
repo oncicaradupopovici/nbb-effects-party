@@ -9,7 +9,7 @@ namespace CSharpParty
 {
     static class Program
     {
-        public static readonly Effect<Unit> Main =
+        public static readonly Effect<Unit> Main1 =
             Console.WriteLine("Give me a number")
                 .Then(Console.ReadLine)
                 .Then(int.Parse)
@@ -43,6 +43,12 @@ namespace CSharpParty
         //        Console.WriteLine("Good bye!")
         //    });
 
+        public static readonly Effect<Unit> Main =
+            from id in Guid.NewGuid
+            from name in GetNameById(id)
+            let name1 = name.ToUpper()
+            from _ in Console.WriteLine(name1)
+            select Unit.Value;
 
 
         static Effect<Unit> Greet(string name, System.Guid userId)
@@ -56,6 +62,9 @@ namespace CSharpParty
                 { } value when (value % 5 == 0) => "Buzz",
                 _ => "No Fizz No Buzz"
             };
+
+        static Effect<string> GetNameById(System.Guid id)
+            => Effect.Pure(id.ToString());
 
     }
 }
