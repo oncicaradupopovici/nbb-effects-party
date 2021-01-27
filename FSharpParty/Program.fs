@@ -55,4 +55,33 @@ let main4 =
             |> Effect.map (System.Int32.Parse >> fizzBuzz)
             |> Effect.bind Console.writeLine)
 
+let main5 =
+    [ "Hello"; "World" ]
+    |> List.traverse_ Console.writeLine
 
+let chrismasTree n =
+    let replicate n s =
+        s
+        |> Seq.collect (fun e -> Seq.init n (fun _ -> e))
+        |> Seq.toList
+
+    let intersperse sep ls =
+        List.foldBack
+            (fun x ->
+                function
+                | [] -> [ x ]
+                | xs -> x :: sep :: xs)
+            ls
+            []
+
+    let line i =
+        let spaces = replicate (n - i) " "
+        let stars = intersperse ' ' (replicate i "*")
+        spaces @ stars |> System.String.Concat
+
+    let tree = [ 1 .. n ] |> List.map line
+
+    effect {
+        do! tree |> List.traverse_ Console.writeLine
+        do! Console.writeLine "R7D 4ever!"
+    }
