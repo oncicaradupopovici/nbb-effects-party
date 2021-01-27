@@ -20,8 +20,16 @@ let main =
     effect {
         do! Console.writeLine "Give me a number"
         let! str = Console.readLine
-        let n = str |> System.Int32.Parse |> fizzBuzz
-        do! Console.writeLine n
+        let fb = str |> System.Int32.Parse |> fizzBuzz
+        do! Console.writeLine fb
+    }
+
+let main1 =
+    effect' {
+        do System.Console.WriteLine "Give me a number"
+        let str = System.Console.ReadLine()
+        let fb = str |> System.Int32.Parse |> fizzBuzz
+        do System.Console.WriteLine fb
     }
 
 let main2 =
@@ -39,4 +47,12 @@ let main3 =
       >>= Console.writeLine ]
     |> List.sequence_
 
-//let main4 =
+let main4 =
+    Console.writeLine "Give me a number"
+    |> Effect.bind
+        (fun _ ->
+            Console.readLine
+            |> Effect.map (System.Int32.Parse >> fizzBuzz)
+            |> Effect.bind Console.writeLine)
+
+
