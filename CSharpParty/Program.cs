@@ -9,7 +9,7 @@ namespace CSharpParty
 {
     static class Program
     {
-        public static readonly Effect<Unit> Main1 =
+        public static readonly Effect<Unit> Main =
             Console.WriteLine("Give me a number")
                 .Then(Console.ReadLine)
                 .Then(int.Parse)
